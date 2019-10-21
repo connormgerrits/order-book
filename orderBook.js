@@ -29,6 +29,11 @@ function reconcileOrder(existingBook, incomingOrder) {
         updatedBook = updatedBook.concat(incomingOrder)
       }
     }
+    else if (existingBook[i].quantity == incomingOrder.quantity && existingBook[i].type != incomingOrder.type) {
+      if (existingBook[i].price > incomingOrder.price && existingBook[i].type == 'buy') { continue }
+      updatedBook = updatedBook.concat(existingBook[i])
+      updatedBook = updatedBook.concat(incomingOrder)
+    }
     else { 
       updatedBook = updatedBook.concat(existingBook[i])
       updatedBook = updatedBook.concat(incomingOrder)
@@ -39,3 +44,7 @@ function reconcileOrder(existingBook, incomingOrder) {
 }
 
 module.exports = reconcileOrder
+
+
+
+//if ("buyer".price >= "seller".price)
